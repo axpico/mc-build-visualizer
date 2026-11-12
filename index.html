@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MC Build Visualizer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <aside id="sidebar">
+      <div class="view-only">
+        <h1 id="viewer-title">Shared build</h1>
+        <p class="help">Read-only view. Orbit with the mouse or press F to walk around.</p>
+        <button id="save-copy">Save a copy to my builds</button>
+      </div>
+      <h1 class="edit-only">Builds</h1>
+      <button id="new-project" class="edit-only">+ New build</button>
+      <ul id="project-list" class="edit-only"></ul>
+      <h2>Textures</h2>
+      <label class="file-btn">Load Minecraft .jar / packs<input id="load-assets" type="file" accept=".jar,.zip" multiple hidden /></label>
+      <p id="assets-status" class="help">No jar loaded: flat colors.</p>
+      <h2 class="edit-only">Blocks</h2>
+      <input id="block-search" class="edit-only" type="search" placeholder="Search blocks…" aria-label="Search blocks" />
+      <ul id="block-list" class="edit-only"></ul>
+      <h2 class="edit-only">Properties</h2>
+      <div id="prop-panel" class="edit-only"></div>
+      <h2>Tools</h2>
+      <select id="tool" class="edit-only" aria-label="Tool">
+        <option value="single">Single block</option>
+        <option value="box">Box fill (2 clicks)</option>
+        <option value="hollow">Hollow box (2 clicks)</option>
+      </select>
+      <label class="opt edit-only"><input type="checkbox" id="mirror-x" /> Mirror X at <input type="number" id="mirror-x-at" value="0" step="0.5" /></label>
+      <label class="opt edit-only"><input type="checkbox" id="mirror-z" /> Mirror Z at <input type="number" id="mirror-z-at" value="0" step="0.5" /></label>
+      <label class="opt"><input type="checkbox" id="slice-on" /> Hide above Y <input type="number" id="slice-y" value="8" step="1" /></label>
+      <button id="fp-btn">First person (F)</button>
+      <h2>File</h2>
+      <button id="share-btn" class="edit-only">Share…</button>
+      <button id="export-json" class="edit-only">Export JSON</button>
+      <button id="export-schem">Export .schem (WorldEdit)</button>
+      <label class="opt">DataVersion <input type="number" id="data-version" value="5023" step="1" /></label>
+      <button id="materials-btn">Material list</button>
+      <button id="screenshot-btn">Screenshot PNG</button>
+      <label class="file-btn edit-only">Import JSON<input id="import-json" type="file" accept=".json,application/json" hidden /></label>
+      <p class="help edit-only">Left click: place · Right click: remove · Middle click: pick block (Shift: exact state) · E: edit sign text · 1–9: hotbar · Drag: orbit · Ctrl+Z / Ctrl+Y: undo/redo · Esc: cancel box. First person: WASD, Space jump (double-tap: fly), Shift down, Ctrl sprint, left break, right place, wheel hotbar</p>
+    </aside>
+    <main id="viewport"><div id="hotbar" class="edit-only" role="toolbar" aria-label="Hotbar"></div><div id="crosshair"></div></main>
+    <dialog id="materials-dialog">
+      <h3>Materials</h3>
+      <table id="materials-table"></table>
+      <form method="dialog"><button>Close</button></form>
+    </dialog>
+    <dialog id="share-dialog">
+      <h3>Share this build</h3>
+      <ol class="help">
+        <li>A share file was downloaded. It includes the block shapes, so friends without Minecraft still see them in flat colors.</li>
+        <li>Upload it somewhere public that serves the raw file, e.g. a GitHub Gist (open it and copy the <b>Raw</b> link).</li>
+        <li>Paste the raw link here:</li>
+      </ol>
+      <input id="share-src" type="url" placeholder="https://gist.githubusercontent.com/…/raw/…" aria-label="Raw file URL" />
+      <input id="share-link" type="text" readonly aria-label="Viewer link" />
+      <form method="dialog" class="row"><button type="button" id="share-copy">Copy viewer link</button><button>Close</button></form>
+    </dialog>
+    <dialog id="sign-dialog">
+      <h3>Sign text</h3>
+      <form method="dialog" id="sign-form">
+        <input maxlength="90" aria-label="Line 1" /><input maxlength="90" aria-label="Line 2" />
+        <input maxlength="90" aria-label="Line 3" /><input maxlength="90" aria-label="Line 4" />
+        <div class="row"><button value="save">Done</button><button value="cancel" formnovalidate>Cancel</button></div>
+      </form>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

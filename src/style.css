@@ -1,0 +1,50 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; font: 14px system-ui, sans-serif; background: #1c1f24; color: #e6e6e6; }
+body { display: flex; }
+#sidebar { width: 240px; padding: 12px; overflow-y: auto; border-right: 1px solid #333; display: flex; flex-direction: column; gap: 8px; }
+#sidebar h1 { font-size: 16px; margin: 0; }
+#sidebar h2 { font-size: 13px; margin: 8px 0 0; color: #aaa; text-transform: uppercase; }
+#viewport { flex: 1; position: relative; min-width: 0; }
+#viewport canvas { display: block; }
+button, select, .file-btn { background: #2c313a; color: inherit; border: 1px solid #444; border-radius: 4px; padding: 6px 8px; font: inherit; cursor: pointer; text-align: center; }
+button:hover, .file-btn:hover { background: #3a414c; }
+#project-list { list-style: none; margin: 0; padding: 0; }
+#project-list li { display: flex; align-items: center; gap: 4px; border-radius: 4px; }
+#project-list li.active { background: #2f4a6b; }
+#project-list span { flex: 1; padding: 4px 6px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#project-list button { padding: 0 6px; border: none; background: none; }
+.help { color: #888; font-size: 12px; }
+input[type=search] { background: #15181c; color: inherit; border: 1px solid #444; border-radius: 4px; padding: 6px 8px; font: inherit; }
+#block-list { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow-y: auto; border: 1px solid #333; border-radius: 4px; }
+#block-list li { padding: 3px 8px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#block-list li:hover { background: #2c313a; }
+#block-list li.active { background: #2f4a6b; }
+#block-list li.more { color: #888; cursor: default; font-size: 12px; }
+#prop-panel { display: grid; gap: 4px; font-size: 13px; color: #aaa; }
+#prop-panel label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+#prop-panel select { padding: 2px 4px; }
+#hotbar { position: absolute; z-index: 1; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; gap: 4px; pointer-events: auto; }
+#hotbar .slot { width: 76px; height: 48px; padding: 2px 4px; font-size: 11px; line-height: 1.1; background: rgba(28, 31, 36, 0.85); overflow: hidden; position: relative; text-transform: capitalize; }
+#hotbar .slot.active { border: 2px solid #fff; }
+#hotbar kbd { position: absolute; top: 1px; left: 3px; font-size: 9px; color: #999; }
+#viewport canvas { position: absolute; inset: 0; }
+label.opt { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #ccc; }
+label.opt input[type=number] { width: 64px; margin-left: auto; background: #15181c; color: inherit; border: 1px solid #444; border-radius: 4px; padding: 2px 4px; }
+#crosshair { display: none; position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; z-index: 1; pointer-events: none;
+  background: linear-gradient(#fff, #fff) center / 2px 16px no-repeat, linear-gradient(#fff, #fff) center / 16px 2px no-repeat; mix-blend-mode: difference; }
+body.fp #crosshair { display: block; }
+#sidebar > * { flex-shrink: 0; }
+dialog { background: #1c1f24; color: inherit; border: 1px solid #444; border-radius: 6px; max-height: 80vh; min-width: 320px; }
+dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+dialog h3 { margin-top: 0; }
+#materials-table { border-collapse: collapse; width: 100%; margin-bottom: 12px; font-size: 13px; text-transform: capitalize; }
+#materials-table td { padding: 3px 8px; border-bottom: 1px solid #333; }
+#materials-table td:nth-child(2) { text-align: right; }
+#materials-table td:nth-child(3) { color: #999; text-transform: none; }
+.view-only { display: none; }
+body.viewer .view-only { display: block; }
+body.viewer .edit-only { display: none !important; }
+#share-dialog { width: min(560px, 90vw); }
+#share-dialog input { width: 100%; margin: 4px 0; background: #15181c; color: inherit; border: 1px solid #444; border-radius: 4px; padding: 6px 8px; font: inherit; }
+dialog .row { display: flex; gap: 8px; margin-top: 8px; }
+#sign-form input { display: block; width: 100%; margin: 4px 0; text-align: center; background: #c9a66b; color: #000; border: 1px solid #6b5332; border-radius: 2px; padding: 4px; font: 15px monospace; }
